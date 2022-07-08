@@ -8,16 +8,15 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.conf import settings
 import requests
+
 # Create your views here.
 
+# index method
 def index(request):
-
-   
     
 	context = {
 	"google_api_key": settings.GOOGLE_API_KEY,
 	"base_country": settings.BASE_COUNTRY}
-    
 
 	return render(request, 'index.html', context)
 
