@@ -32,3 +32,6 @@ def index(request):
     
 #     return render(request,'index.html',context)
 #     #return HttpResponse('dsadada')
+
+def home(request):
+	return render(request, 'home.html')
