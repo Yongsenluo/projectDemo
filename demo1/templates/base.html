@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<!-- 页头信息 -->
+
+<head>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome/css/all.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'plugins/slick/slick.css' %}">
+    <link rel="stylesheet" href="{%static 'plugins/slick/slick-theme.css' %}">
+
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+
+    <header class="navigation">
+        <div id="navbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg px-0 py-4">
+                            <a class="navbar-brand" href="home">Yongsen</a>
+                            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                                data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            </button>
+
+                            <div class="collapse navbar-collapse text-center" id="navbarsExample09">
+                                <ul class="navbar-nav ml-auto">
+                                    <div class="my-2 my-md-0 ml-lg-4 text-center">
+                                        <a href="#" class="btn btn-solid-border btn-round-full">攻略</a>
+                                    </div>
+                                    <div class="my-2 my-md-0 ml-lg-4 text-center">
+                                        <a href="#" class="btn btn-solid-border btn-round-full">创建旅行</a>
+                                    </div>
+                                    <div class="my-2 my-md-0 ml-lg-4 text-center">
+                                        <a href="#" class="btn btn-solid-border btn-round-full">登录</a>
+                                    </div>
+                                    <div class="my-2 my-md-0 ml-lg-4 text-center">
+                                        <a href="#" class="btn btn-solid-border btn-round-full">注册</a>
+                                    </div>
+
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</head>
+
+
+<body>
+    <div>
+        {% block body_block %}
+        {% endblock %}
+    </div>
+
+    <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer></script>
+    <script src="{% static 'plugins/google-map/map.js' %}" defer></script>
+
+</body>
+<footer class="footer">
+    <div class="footer-btm pt-4">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="copyright">
+                    Here is my GitHub:
+                    <br /><a href="https://github.com/Yongsenluo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yongsen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+
+
+</html>
