@@ -20,6 +20,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
+
 urlpatterns = [
     path('', include('demo_app.urls', namespace="demo_app")),
     path('', include('user.urls', namespace="user")),
