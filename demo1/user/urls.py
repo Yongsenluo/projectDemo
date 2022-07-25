@@ -1,9 +1,11 @@
-from wsgiref.simple_server import demo_app
+from django.contrib.auth import views as authView
 from django.urls import path
 from .import views
 
 app_name = 'user'
 
 urlpatterns = [ 
-    path('signup', views.signup, name='signup'),
+    path('signup/', views.signupUser, name='signup'),
+    path('login/', views.loginUser, name ='login'),
+    path('logout/',  views.logoutUser, name ='logout'),
 ]

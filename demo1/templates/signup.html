@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+signup page
+{% endblock %}
+
+{% block body_block %}
+<link rel="stylesheet" href="{% static 'plugins/bootstrap/signup.css' %}">
+
+
+
+<div class="signup_form">
+    <H1>Create an Account Here!</H1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for filed in form %}
+        <div class="filed">
+            {{filed.label}} :
+            <div>
+                {{filed}}
+            </div>
+        </div>
+       
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Create an Account</button>
+       <!--  <input type="name" class="input-box" placeholder="Your name" name="username">
+        <input type="email" class="input-box" placeholder="Your email" name="email">
+        <small>Please input your email</small>
+        <input type="password" class="input-box" placeholder="Your password" name="password1">
+        <small>The password must contain letters, numbers, or special characters</small>
+        <input type="password" class="input-box" placeholder="Confirm your password" name="password2">
+        <button type="submit" class="btn btn-primary">Create an Account</button> -->
+    </form>
+        {{form.errors}}
+    <div class="card-footer text-muted text-center">
+        Already have an account?
+        <div>
+            <a href="{% url 'user:login' %}">Log in</a>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

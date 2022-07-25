@@ -35,3 +35,6 @@ def index(request):
 
 def home(request):
 	return render(request, 'home.html')
+
+def map(request):
+	return render(request,'map.html')

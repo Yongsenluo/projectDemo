@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+login page
+{% endblock %}
+
+{% block body_block %}
+<link rel="stylesheet" href="{% static 'plugins/bootstrap/signup.css' %}">
+<div class="signup_form">
+    <H1>Login Here!</H1>
+    <form method="post" action="/login/">
+        {% csrf_token %}
+        <input type="name" class="input-box" placeholder="Your email" name="username">
+        <small>Please input your username </small>
+        <input type="password" class="input-box" placeholder="Your password" name="password">
+        <button type="submit" class="btn btn-primary btn-sm">Login Now</button>
+    </form>
+
+    <!-- will show the messages (this messages write in view.sign()) -->
+    {% for message in messages %}
+        <p id="message"> {{message}}</p>
+    {% endfor %}
+    <div class="card-footer text-muted text-center">
+        New User? <a href="{% url 'user:signup' %}">Sign up</a>
+        <div class="text-center py-2">
+            <small>
+                <a href="#" class="text-muted">Forgot your password?</a>
+            </small>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+{% endblock %}
