@@ -39,6 +39,7 @@ def loginUser(request):
             login(request,user)
             return redirect('/home/') 
         else:
+            
             messages.info(request,'Your Username and Password is not correct')
     return render(request, 'login.html')
 
