@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'demo_app',
     'user',
+    'attractionApp',
 ]
 
 MIDDLEWARE = [

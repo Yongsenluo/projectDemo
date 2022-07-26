@@ -1,5 +1,3 @@
-
-from pdb import post_mortem
 from django.contrib import messages
 from django.shortcuts import render
 from django.shortcuts import render,redirect
@@ -39,7 +37,7 @@ def loginUser(request):
             login(request,user)
             return redirect('/home/') 
         else:
-            
+
             messages.info(request,'Your Username and Password is not correct')
     return render(request, 'login.html')
 
