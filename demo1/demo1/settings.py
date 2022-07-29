@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'demo_app',
     'user',
     'attractionApp',
+    'routeApp',
 ]
 
 MIDDLEWARE = [
