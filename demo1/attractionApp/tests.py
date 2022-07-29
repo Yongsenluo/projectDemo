@@ -35,8 +35,8 @@ class TestModels(TestCase):
 
         self.acctrction1 = attractionModels.objects.create(
             attractionName = "London Eye",
-            attractionLat = 51.503399,
-            attractionLng = -0.119519,
+            attractionLat = "51.503399",
+            attractionLng = "-0.119519",
             attractionContent = "here is london eyes",
             attractionPostcode = "SE1 7PB",
             attractionLikes = 10000,
@@ -59,9 +59,7 @@ class TestModels(TestCase):
 
     def testAttraction(self):
         londonEye = attractionModels.objects.get(attractionName = "London Eye")
-        print("london eye: "+ str(Decimal(londonEye.attractionLat).quantize(Decimal('0.000000'))))
-        print(londonEye.attractionLng)
-        self.assertEqual(londonEye.attractionLat,Decimal('51.503399'))
+        self.assertEqual(londonEye.attractionLat,"51.503399")
         self.assertEqual(londonEye.attractionCategory.categoryName,"tourist")
 
     

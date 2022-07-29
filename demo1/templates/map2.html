@@ -1,0 +1,88 @@
+<body>
+    <html>
+
+    <head>
+        <title>Custom Markers</title>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    </head>
+
+    <body>
+        
+        lat: <input type="text" id="lat1" name="lat">
+        lng: <input type="text" id="lng1" name="lng">
+        <button id="submit"> search</button>
+
+        <div id="map"></div>
+        {% csrf_token %}
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzgKg6zPvAkeEVugOuHFJf7VNRx5VvZW4&callback=initMap&v=weekly"
+            defer>
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+        <script>
+            $("#submit").click(function () {
+                $.ajax({
+                    url: '',
+                    type: 'POST',
+                    data: {
+                        lat: $("#lat1").val(),
+                        lng: $("#lng1").val(),
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        function initMap(data) {
+                            console.log("......")
+                            var lat = data;
+                            var lng = data;
+                            //const myLatLng = { lat: -25.363, lng: 131.044 };
+                            const myLatLng2 = { lat: lat, lng: lng };
+                            const map = new google.maps.Map(document.getElementById("map"), {
+                                zoom: 4,
+                                center: myLatLng2,
+                            });
+
+                            new google.maps.Marker({
+                                position: myLatLng2,
+                                map,
+                                title: "Hello World!",
+                                draggable: true,
+                            });
+                        }
+
+                        window.initMap = initMap(data);
+                    }
+                })
+            })
+        </script>
+
+
+        <style>
+            /* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+            #map {
+                height: 70%;
+                width: 70%;
+            }
+
+            /* 
+ * Optional: Makes the sample page fill the window. 
+ */
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </body>
+
+    </html>
+</body>
+
+</html>
