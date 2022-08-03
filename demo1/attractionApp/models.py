@@ -5,14 +5,14 @@ from django.db import models
 # Create your models here.
 #关于景点，城市的models
 class regionModels(models.Model):
-    REGION_NAME =(
-        ('E','England'),
-        ('S','Scotland'),
-        ('W','Wales'),
-    )
+    # REGION_NAME =(
+    #     ('E','England'),
+    #     ('S','Scotland'),
+    #     ('W','Wales'),
+    # )
     regionId = models.AutoField(verbose_name="region id",primary_key=True)
     #choose a region from REGION_NAME
-    regionName = models.CharField(verbose_name = "region name",max_length=3,choices=REGION_NAME)
+    regionName = models.CharField(verbose_name = "region name",max_length=128)
     regionLikes = models.IntegerField(verbose_name="how many people like this region",default=0)
     
     class Meta:
@@ -23,6 +23,7 @@ class cityModels(models.Model):
     cityName = models.CharField(verbose_name="city name",max_length=128)
     cityLikes = models.IntegerField(verbose_name="how many people like this city",default=0)
     cityRegion = models.ForeignKey(verbose_name="city region", to=regionModels,on_delete=models.CASCADE, default=None)
+    cityTrueId = models.CharField(verbose_name="city true id",max_length=128,default="luoyongsen")
 
     class Meta:
         verbose_name_plural = "city"
@@ -46,6 +47,7 @@ class attractionModels(models.Model):
     attractionLikes = models.IntegerField(verbose_name="how many people love this attraction",default=0)
     attractionCategory = models.ForeignKey(verbose_name="which category",to=categoryModels,on_delete=models.CASCADE)
     attractionCity = models.ForeignKey(verbose_name="which city is it",to=cityModels,on_delete=models.CASCADE)
+    attractionTrueId = models.CharField(verbose_name="attraction true id",max_length=128,default="luoyongsen")
 
     class Meta:
         verbose_name_plural = "attraction"

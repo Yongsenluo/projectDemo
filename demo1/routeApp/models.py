@@ -1,4 +1,3 @@
-from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
 from attractionApp.models import cityModels,attractionModels
@@ -10,6 +9,7 @@ class bigRouteModels(models.Model):
     routeDate = models.DateField(verbose_name="publish time",auto_now_add=True)
     routeUser =  models.ForeignKey(verbose_name="belong to which user", to=User, on_delete=models.CASCADE)
     routeImg = models.ImageField(verbose_name="route img",upload_to="upload/route/",default='/media/upload/user/home.jpg')
+    routeDay = models.IntegerField(verbose_name="route days",default=0)
     
     routeLike = models.IntegerField(verbose_name="how many person liked", default=0)
     routeComment = models.IntegerField(verbose_name="how many person commented", default=0)

@@ -42,24 +42,29 @@
                                         <a href="#" class="btn btn-solid-border btn-round-full">Create plan</a>
                                     </div>
                                     {% if request.user.is_authenticated %}
-                                        <div class="my-2 my-md-0 ml-lg-4 text-center">
-                                            <div class="my-2 my-md-0 ml-lg-4 text-center">
-                                                <a class="btn btn-solid-border btn-round-full"> Welcome: {{ request.user.username }}</a>
-                                            </div>
-                                        </div>
-                                        <div class="my-2 my-md-0 ml-lg-4 text-center">
-                                            <a href="{% url 'user:logout' %}" class="btn btn-solid-border btn-round-full">Logout</a>
-                                        </div>
+                                    <div class="my-2 my-md-0 ml-lg-4 text-center">
+                                        <a href="{% url 'attractionApp:geocoding' %}"
+                                            class="btn btn-solid-border btn-round-full">Search attraction</a>
+                                    </div>
+                                    <div class="my-2 my-md-0 ml-lg-4 text-center">
+                                        <a class="btn btn-solid-border btn-round-full"> Welcome: {{request.user.username }}</a>
+                                    </div>
+
+                                    <div class="my-2 my-md-0 ml-lg-4 text-center">
+                                        <a href="{% url 'user:logout' %}"
+                                            class="btn btn-solid-border btn-round-full">Logout</a>
+                                    </div>
+
 
                                     {% else %}
-                                        <div class="my-2 my-md-0 ml-lg-4 text-center">
-                                            <a href="{% url 'user:login' %}"
-                                                class="btn btn-solid-border btn-round-full">Login</a>
-                                        </div>
-                                        <div class="my-2 my-md-0 ml-lg-4 text-center">
-                                            <a href="{% url 'user:signup' %}"
-                                                class="btn btn-solid-border btn-round-full">Register</a>
-                                        </div>
+                                    <div class="my-2 my-md-0 ml-lg-4 text-center">
+                                        <a href="{% url 'user:login' %}"
+                                            class="btn btn-solid-border btn-round-full">Login</a>
+                                    </div>
+                                    <div class="my-2 my-md-0 ml-lg-4 text-center">
+                                        <a href="{% url 'user:signup' %}"
+                                            class="btn btn-solid-border btn-round-full">Register</a>
+                                    </div>
                                     {% endif %}
 
                                 </ul>

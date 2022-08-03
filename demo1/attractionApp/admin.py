@@ -13,7 +13,7 @@ class regionAdmin(admin.ModelAdmin):
 
 @admin.register(cityModels)
 class cityAdmin(admin.ModelAdmin):
-    list_display = ('cityId', 'cityName', 'cityLikes', 'cityRegion')
+    list_display = ('cityId', 'cityTrueId','cityName', 'cityLikes', 'cityRegion')
 
 
 @admin.register(categoryModels)
@@ -23,5 +23,5 @@ class categoryAdmin(admin.ModelAdmin):
 
 @admin.register(attractionModels)
 class attractionAdmin(admin.ModelAdmin):
-    list_display = ('attractionId', 'attractionName', 'attractionLat',
+    list_display = ('attractionId','attractionTrueId', 'attractionName', 'attractionLat',
                     'attractionLng', 'attractionContent', 'attractionPostcode', 'attractionImg', 'attractionLikes', 'attractionCategory', 'attractionCity')

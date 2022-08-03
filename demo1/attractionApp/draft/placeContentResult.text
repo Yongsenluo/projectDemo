@@ -1,0 +1,226 @@
+details of university of Glasgow
+{
+   "html_attributions" : [],
+   "result" : {
+      "address_components" : [
+         {
+            "long_name" : "Glasgow",
+            "short_name" : "Glasgow",
+            "types" : [ "postal_town" ]
+         },
+         {
+            "long_name" : "Glasgow City",
+            "short_name" : "Glasgow City",
+            "types" : [ "administrative_area_level_2", "political" ]
+         },
+         {
+            "long_name" : "Scotland",
+            "short_name" : "Scotland",
+            "types" : [ "administrative_area_level_1", "political" ]
+         },
+         {
+            "long_name" : "United Kingdom",
+            "short_name" : "GB",
+            "types" : [ "country", "political" ]
+         },
+         {
+            "long_name" : "G12 8QQ",
+            "short_name" : "G12 8QQ",
+            "types" : [ "postal_code" ]
+         }
+      ],
+      "adr_address" : "\u003cspan class=\"locality\"\u003eGlasgow\u003c/span\u003e \u003cspan class=\"postal-code\"\u003eG12 8QQ\u003c/span\u003e, \u003cspan class=\"country-name\"\u003eUK\u003c/span\u003e",
+      "business_status" : "OPERATIONAL",
+      "formatted_address" : "Glasgow G12 8QQ, UK",
+      "formatted_phone_number" : "0141 330 2000",
+      "geometry" : {
+         "location" : {
+            "lat" : 55.87242560000001,
+            "lng" : -4.2900009
+         },
+         "viewport" : {
+            "northeast" : {
+               "lat" : 55.87572525000001,
+               "lng" : -4.2807616
+            },
+            "southwest" : {
+               "lat" : 55.86790424999999,
+               "lng" : -4.2998068
+            }
+         }
+      },
+      "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/school-71.png",
+      "icon_background_color" : "#7B9EB0",
+      "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/school_pinlet",
+      "international_phone_number" : "+44 141 330 2000",
+      "name" : "University of Glasgow",
+      "opening_hours" : {
+         "open_now" : true,
+         "periods" : [
+            {
+               "open" : {
+                  "day" : 0,
+                  "time" : "0000"
+               }
+            }
+         ],
+         "weekday_text" : [
+            "Monday: Open 24 hours",
+            "Tuesday: Open 24 hours",
+            "Wednesday: Open 24 hours",
+            "Thursday: Open 24 hours",
+            "Friday: Open 24 hours",
+            "Saturday: Open 24 hours",
+            "Sunday: Open 24 hours"
+         ]
+      },
+      "photos" : [
+         {
+            "height" : 2801,
+            "html_attributions" : [
+               "\u003ca href=\"https://maps.google.com/maps/contrib/109401216390333930655\"\u003eCherry Tomato\u003c/a\u003e"
+            ],
+            "photo_reference" : "AeJbb3dAn_joahTD-EWDPYwucxuvk1jsgPQIo9LNc4MqB6qEd7KTA0qn2sXHgjrT5NmoAGZRDlav1Gspmzc3VvNLvqzJLIsBZuLEnfev8s0MYxrX73LHGhPadxXEgoKxIvjvUH1bbQlfTyf_347qz7Mlak9WJ81fPBQDNGCGO_aInY-SAUEh",
+            "width" : 3735
+         },
+         {
+            "height" : 3024,
+            "html_attributions" : [
+               "\u003ca href=\"https://maps.google.com/maps/contrib/112196223562471652038\"\u003eDhruv Majumdar\u003c/a\u003e"
+            ],
+            "photo_reference" : "AeJbb3cnAmKg2fUIp5vSwqwBzefeMp4O7xaX8_V3eptZGvHFI92nvZImXjxyHkDOeYOcvH7QYgzUUvJm3fWA6FilWJeACwtESfaLl8y4GElFqt4kAJpEeH5QOI-rk8zhsD2U894LMGf3DwgWzbq-guMqw9PIX6DtNR1a_MRwsRfzmXl6D6SW",
+            "width" : 4032
+         },
+         {
+            "height" : 2048,
+            "html_attributions" : [
+               "\u003ca href=\"https://maps.google.com/maps/contrib/105023952927326307566\"\u003eImanol Gallego\u003c/a\u003e"
+            ],
+            "photo_reference" : "AeJbb3c_MgIr1c82G0a-E4MItKPYBuvdzzFv7mBbdSgC1qOnvitzYGaLQotDfuSolnglkvkQ_mTMsd5IvncbeERBzecdird6n3kjYzPBtx9VpkJyl-CApoXMB6gPxkHkT6sicoW551kHeiNcXec5tyMJTmf3VOoZaI7LOuR1UEp-8L-2kRD9",
+            "width" : 1836
+         },
+         {
+            "height" : 12000,
+            "html_attributions" : [
+               "\u003ca href=\"https://maps.google.com/maps/contrib/104412557017634586886\"\u003eDennis Bartels\u003c/a\u003e"
+            ],
+            "photo_reference" : "AeJbb3dji5NAOSe2W58F2WziQ0u1BEwz324eXFQ-EtPUk6JjDKHhMGWAX7SYwp-OGZgAcQdEwAezLMT8olMV8Pz6wwXkOiMCB3caaNW9Qew9zvyc3E_PKpxtr2eKzCK6u07aZtIYoAd8gEBy-ZKDOnB1TSDkKlDpZxbFlk_t2uzzofx1BkFz",
+            "width" : 9000
+         },
+         {
+            "height" : 949,
+            "html_attributions" : [
+               "\u003ca href=\"https://maps.google.com/maps/contrib/105023952927326307566\"\u003eImanol Gallego\u003c/a\u003e"
+            ],
+            "photo_reference" : "AeJbb3f3BG7mZFxeei-ChUJOnsjjkBfHlvN8usQuWqWiHTRr3gNqe2QK9SeYlBsFCDHdLEJof5QT5DAu7daHfqAP5MSVsOEm-0xQhOEtdp4I5Iq3_MMZDQUiP1hoZkZP0UWaR665vdjo6H-DkioOy-bJs926YPaMf2tKdplnEn79fMCHU7Yj",
+            "width" : 1699
+         },
+         {
+            "height" : 2448,
+            "html_attributions" : [
+               "\u003ca href=\"https://maps.google.com/maps/contrib/102317949665432165785\"\u003eF B\u003c/a\u003e"
+            ],
+            "photo_reference" : "AeJbb3fmkZ_Bc8FANQLQd7CWUU5LRynawxWCEmEnvjDvNw0gxUGjvaRh0wxuE0iow1vKscnx4Lcc5_EJ-PbZqrSG7nhCw0yKDqsw4hpRJfQxzKCRcJWUMrSHKNL-fxG1YNR-cTU9xQwq14e18quVSveicDsFbeSaINmnRrl2J8CLU-Ng90yV",
+            "width" : 3264
+         },
+         {
+            "height" : 4032,
+            "html_attributions" : [
+               "\u003ca href=\"https://maps.google.com/maps/contrib/113714938297044056899\"\u003eZiff Anold\u003c/a\u003e"
+            ],
+            "photo_reference" : "AeJbb3eXXH-nFCR2KJA-JpBpM1S8ixI6ovvs6K9WCoVKGqebMO2kWng_yPrJYeIA1K0unaB--6b9Ijwz1f_t6tiv5LtSf8uQJtRI_86LYJJJ78VgphAiQQZF41qhzjhkJDRTWodn8Qo9twk7q9nRafGTw6juJ_82qPOgqaMtVpPhgQPi7aL_",
+            "width" : 3024
+         },
+         {
+            "height" : 2008,
+            "html_attributions" : [
+               "\u003ca href=\"https://maps.google.com/maps/contrib/114156056406130022326\"\u003eVáclav Pavlík\u003c/a\u003e"
+            ],
+            "photo_reference" : "AeJbb3eB_QL4y_rj8k7FoWst1KqSNp--Hrq0njsE0c-4fZHiPqOR-Kh1T8lxkLY8VLb_cEKlvGVOxYCGpfppc0kXwrhoLFhQl6DntwtikCNzk6PiCc5T97lGBMYFa0VPwb-Xsw8JP1GC-_ksqOP0Uese_FUalOD94PM67kYb2rSsP6TcTIF8",
+            "width" : 1606
+         },
+         {
+            "height" : 2890,
+            "html_attributions" : [
+               "\u003ca href=\"https://maps.google.com/maps/contrib/100370790712403207518\"\u003eKrishnendu Vyas\u003c/a\u003e"
+            ],
+            "photo_reference" : "AeJbb3c1-opuv8PGlj2d7YAEKtgFNzVDzk7doDUnJdrQg94TRofFuI5-_Xd7Y3x2gro6Gy7T1YiGdmqtyGFGvqxAUcRp4DUcscSIHhKeibjHRnSiOQK64C46f2wsdQStzRfsB0hWJcvXUCvpR7D-cQacvJ6uP9eWISWZfImw8MdaRi9dIN0",
+            "width" : 4096
+         },
+         {
+            "height" : 3468,
+            "html_attributions" : [
+               "\u003ca href=\"https://maps.google.com/maps/contrib/100370790712403207518\"\u003eKrishnendu Vyas\u003c/a\u003e"
+            ],
+            "photo_reference" : "AeJbb3eVZGhK-d6Q3s1BIqGtCq3hvPidgMtxYcV6hZyPjIUNaqC9Orh3BTjFb0y1NuBbMd3XomZsdtveJ1sZxY9MzdpJ4c4q9UjnVqkNi5H7e-vo1kUdtHQQ1gygCDljkOZ1POLvRDFYiPC0xy3aAOEc4HKr8omG0it8eFao9yNdruqqzos",
+            "width" : 4624
+         }
+      ],
+      "place_id" : "ChIJs2n0CtJFiEgRg0leZQti8KM",
+      "plus_code" : {
+         "compound_code" : "VPC5+XX Glasgow, UK",
+         "global_code" : "9C7QVPC5+XX"
+      },
+      "rating" : 4.7,
+      "reference" : "ChIJs2n0CtJFiEgRg0leZQti8KM",
+      "reviews" : [
+         {
+            "author_name" : "Vivienne Johnston",
+            "author_url" : "https://www.google.com/maps/contrib/101354789425271627940/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh3.googleusercontent.com/a-/AFdZucppfJfMa0dcFZgxQd-8pKdGFjVtSnB0J4JlWxXRIA=s128-c0x00000000-cc-rp-mo-ba4",
+            "rating" : 5,
+            "relative_time_description" : "a week ago",
+            "text" : "I worked here many years ago.\nStunning architecture, great training and I am sure would be great for any student for their C.V. being seen to have studied here.\n\nBrilliant Art Gallery with lovely food nearby and a nice park.",
+            "time" : 1658322193
+         },
+         {
+            "author_name" : "Denil Joseph",
+            "author_url" : "https://www.google.com/maps/contrib/107242390759594716633/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh3.googleusercontent.com/a-/AFdZucpbpntjQ1TiblLkcNrl6zfOQM5yRKx34WqTZYaJaA=s128-c0x00000000-cc-rp-mo",
+            "rating" : 5,
+            "relative_time_description" : "6 months ago",
+            "text" : "Truly Magnificent University with high detailed medieval building style which could truly attract the spectators. Education quality and professor response is truly appreciable. The University is having highly sophisticated building and infrastructure. It's a dream place for many students around the world.",
+            "time" : 1642551032
+         },
+         {
+            "author_name" : "Elspeth Twist",
+            "author_url" : "https://www.google.com/maps/contrib/116838031719757448398/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh3.googleusercontent.com/a-/AFdZucodzezMQfFIntoxJ8uKwSTkCcPQBq1Td_4Z2a8h=s128-c0x00000000-cc-rp-mo",
+            "rating" : 2,
+            "relative_time_description" : "2 weeks ago",
+            "text" : "We were so disappointed with our tour.  While the buildings are amazing and our tour guide was very knowledgeable, we did not think it was reasonable to have let us pay for a tour that could not be fully completed due to a wedding taking place.",
+            "time" : 1657988121
+         },
+         {
+            "author_name" : "Art Mac",
+            "author_url" : "https://www.google.com/maps/contrib/114417117896568510517/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh3.googleusercontent.com/a-/AFdZucrpbC4-hBe09B20N58P_UTphDz2U0Tji7ZOUAWh8g=s128-c0x00000000-cc-rp-mo-ba5",
+            "rating" : 4,
+            "relative_time_description" : "4 months ago",
+            "text" : "Very busy today as an event was on. The U is big on pandemic regs, card only. mask every time,  but a friendly and open place  nice staff.",
+            "time" : 1648644383
+         },
+         {
+            "author_name" : "Rosa Paula",
+            "author_url" : "https://www.google.com/maps/contrib/115780315835061294421/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh3.googleusercontent.com/a-/AFdZucrZcp9xg_hnriu3SOtuh_odrXlgUabm_v5I7WXLFQ=s128-c0x00000000-cc-rp-mo-ba5",
+            "rating" : 5,
+            "relative_time_description" : "7 months ago",
+            "text" : "The most beautiful and breathtaking building I've ever seen. Amazing views and free to get in the grounds. Spectacular.",
+            "time" : 1639327860
+         }
+      ],
+      "types" : [ "university", "point_of_interest", "establishment" ],
+      "url" : "https://maps.google.com/?cid=11813049623677651331",
+      "user_ratings_total" : 1042,
+      "utc_offset" : 60,
+      "vicinity" : "Glasgow",
+      "website" : "https://www.gla.ac.uk/"
+   },
+   "status" : "OK"
+}

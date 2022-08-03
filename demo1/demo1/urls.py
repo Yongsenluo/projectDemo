@@ -26,6 +26,8 @@ urlpatterns = [
     path('', include('demo_app.urls', namespace="demo_app")),
     path('', include('user.urls', namespace="user")),
     path('admin/', admin.site.urls),
+    path('',include('attractionApp.urls',namespace="attraction")),
+    path('',include('routeApp.urls',namespace="routeApp")),
 ]
 
 if settings.DEBUG:
