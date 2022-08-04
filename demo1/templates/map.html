@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
 
 <head>
@@ -9,169 +11,85 @@
 </head>
 
 <body>
-    <html>
+    <link rel="stylesheet" href="{% static '/css/googleMap.css' %}">
+    {% csrf_token %}
 
-    <head>
-        <title>Custom Markers</title>
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <body onload="initialize()">
+        <div id="map" style="width: 1300px; height: 600px;">
+        </div>
+    
+        {% for i in latlng %}
+        {% endfor %}
+        <div id="lat">{{ LatLng }}</div>
 
-        <link rel="stylesheet" type="text/css" href="./style.css" />
-        <script type="module" src="./index.js"></script>
-    </head>
+        <!-- <div>
+            <form method="post">
+                <input id="address" type="textbox" value="Sydney, NSW">
+                <input type="button" value="Encode" onclick="codeAddress()">
+            </form>
+        </div> -->
 
-    <body>
-        <div id="map"></div>
-
-        <!-- 
-     The `defer` attribute causes the callback to execute after the full HTML
-     document has been parsed. For non-blocking uses, avoiding race conditions,
-     and consistent behavior across browsers, consider loading using Promises
-     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
-    -->
         <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzgKg6zPvAkeEVugOuHFJf7VNRx5VvZW4&callback=initMap&v=weekly"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzgKg6zPvAkeEVugOuHFJf7VNRx5VvZW4&callback=initMap&v=weekly&language=en"
             defer></script>
-
-
-
         <script>
-            let map;
-
-            function initMap() {
-                map = new google.maps.Map(document.getElementById("map"), {
-                    center: new google.maps.LatLng(-33.91722, 151.23064),
-                    zoom: 16,
-                });
-
-                const iconBase =
-                    "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
-                const icons = {
-                    parking: {
-                        icon: iconBase + "parking_lot_maps.png",
-                    },
-                    library: {
-                        icon: iconBase + "library_maps.png",
-                    },
-                    info: {
-                        icon: iconBase + "info-i_maps.png",
-                    },
-                };
-                const features = [
-                    {
-                        position: new google.maps.LatLng(-33.91721, 151.2263),
-                        type: "info",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.91539, 151.2282),
-                        type: "info",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.91747, 151.22912),
-                        type: "info",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.9191, 151.22907),
-                        type: "info",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.91725, 151.23011),
-                        type: "info",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.91872, 151.23089),
-                        type: "info",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.91784, 151.23094),
-                        type: "info",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.91682, 151.23149),
-                        type: "info",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.9179, 151.23463),
-                        type: "info",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.91666, 151.23468),
-                        type: "info",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.916988, 151.23364),
-                        type: "info",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
-                        type: "parking",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
-                        type: "parking",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
-                        type: "parking",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
-                        type: "parking",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
-                        type: "parking",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.91851096391805, 151.2344058214569),
-                        type: "parking",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.91818154739766, 151.2346203981781),
-                        type: "parking",
-                    },
-                    {
-                        position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
-                        type: "library",
-                    },
-                ];
-
-                // Create markers.
-                for (let i = 0; i < features.length; i++) {
-                    const marker = new google.maps.Marker({
-                        position: features[i].position,
-                        icon: icons[features[i].type].icon,
-                        map: map,
-                    });
+            var geocoder;
+            var map;
+            function initialize() {
+                geocoder = new google.maps.Geocoder();
+                var latlng = new google.maps.LatLng(51.5072178, -0.1275862);
+                var mapOptions = {
+                    zoom: 11,
+                    center: latlng
                 }
+                
+                map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                var marker = new google.maps.Marker({
+                        map: map,
+                        position: latlng
+                });
             }
-            
 
-            window.initMap = initMap;
-
+            function codeAddress() {
+                var address = document.getElementById('address').value;
+                geocoder.geocode({ 'address': address }, function (results, status) {
+                    var lat = results[0].geometry.location.lat();
+                    
+                    if (status == 'OK') {
+                        map.setCenter(results[0].geometry.location);
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location
+                        });
+                        console.log(results[0].geometry.location)
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            }
         </script>
 
-        <style>
-            /* 
- * Always set the map height explicitly to define the size of the div element
- * that contains the map. 
- */
-            #map {
-                height: 100%;
-            }
-
-            /* 
- * Optional: Makes the sample page fill the window. 
- */
-            html,
-            body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-        </style>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <!-- <script>
+            $("#submit").click(function () {
+                    $.ajax({
+                        url: '',
+                        type: 'POST',
+                        data: {
+                            address: $('#address').val()
+                        },
+                        success: function(data){
+                            console.log(data)
+                        }
+                    })
+                })
+        </script>  -->
     </body>
 
-    </html>
+    
+
+
 </body>
+
 
 </html>

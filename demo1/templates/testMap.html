@@ -38,7 +38,7 @@
         </div> -->
 
         <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzgKg6zPvAkeEVugOuHFJf7VNRx5VvZW4&callback=initMap&v=weekly"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzgKg6zPvAkeEVugOuHFJf7VNRx5VvZW4&callback=initMap&v=weekly&language=en"
             defer></script>
         <script>
             var geocoder;
@@ -76,24 +76,25 @@
                 });
             }
         </script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <!-- <script>
+            $("#submit").click(function () {
+                    $.ajax({
+                        url: '',
+                        type: 'POST',
+                        data: {
+                            address: $('#address').val()
+                        },
+                        success: function(data){
+                            console.log(data)
+                        }
+                    })
+                })
+        </script>  -->
     </body>
 
-<!-- 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
-        $("#submit").click(function () {
-                $.ajax({
-                    url: '',
-                    type: 'POST',
-                    data: {
-                        address: $('#address').val()
-                    },
-                    success: function(data){
-                        console.log(data)
-                    }
-                })
-            })
-    </script> -->
+    
 
 
 </body>

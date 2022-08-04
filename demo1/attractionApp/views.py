@@ -53,7 +53,7 @@ def geocoding(requests):
         #try:
             address = requests.POST.get('address')
             json = gecodingAddress(address)
-            print(json)
+            #print(json)
             placeId = json['results'][0].get("place_id")
             placeType = json['results'][0].get("types")
             json2 = placeJson(placeId)
@@ -62,7 +62,9 @@ def geocoding(requests):
                 'lat': json['results'][0].get("geometry")['location']['lat'],
                 'lng': json['results'][0].get("geometry")['location']['lng']
             }
-            print(latLngContext)
+            print("----------------------------------")
+            print(placeType)
+            #print(latLngContext)
             for pt in placeType:
                 if pt == "locality":
                     print("this is a city")
@@ -81,9 +83,8 @@ def geocoding(requests):
 
                     else:
                         createCity(address)
-                return render(requests,'testMap.html',{'LatLng': latLngContext})
-            placeIdExit = attractionModels.objects.filter(
-            attractionTrueId=placeId)
+            print("...............................")    
+            placeIdExit = attractionModels.objects.filter(attractionTrueId=placeId)
             print(placeId)
             if placeIdExit.exists():
                 print("存在")

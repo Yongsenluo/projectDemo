@@ -2,12 +2,138 @@
 {% load static %}
 
 {% block title %}
-    home page
+home page
 {% endblock %}
+
+
 
 {% block body_block %}
-<div>
-    this is create route html
+<!-- <link rel="stylesheet" href="{% static '/plugins/bootstrap-5.2.0-dist/css/bootstrap.css' %}"> -->
+<script src="{% static '/plugins/jquery/jquery.min.js' %}"></script>
+<script src="{% static '/plugins/bootstrap-5.2.0-dist/js/bootstrap.js' %}"></script>
+<style>
+    #step1 {
+        display: block;
+    }
+
+    #step2,
+    #step3 {
+        display: none;
+    }
+
+    #step1,
+    #step2,
+    #step3 {
+        position: absolute;
+        width: 100%;
+        height: 40%;
+        left: 30%;
+        top: 15%;
+    }
+</style>
+<script>
+    function getnextpage(i) {
+        alert(i);
+        var step = new Array("step1", "step2", "step3");
+
+        for (var h = 0; h < step.length; h++) {
+            if (i == step[h]) {
+                console.log('giao')
+                document.getElementById(i).style.display = "block";
+            } else {
+                console.log('giaogiao')
+                document.getElementById(step[h]).style.display = "none";
+            }
+        }
+    }
+
+</script>
+{% csrf_token %}
+<div class="container" id="step1">
+    <div class="row">
+        <div class="form-group col-md-3">
+            <input type="hidden" id="who_publish" value="{{request.user.id}}">
+            <div>
+                <span>Input Title</span>
+                <span><input type="text" id="bigRoute_title" class="form-control" placeholder="input title here"></span>
+            </div>
+            <div>
+                <span>How many days?</span>
+                <span><input type="text" id="days" class="form-control"
+                        placeholder="how many days you will travel?"></span>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <button type="button" onclick="getnextpage('step2')">next page</button>
+        </div>
+    </div>
 </div>
 
-{% endblock %}
+<div class="container" id="step2">
+    <div class="row">
+        <div class="form-group col-md-3">
+            <div>
+                <span>Which region do you want to go?</span>
+                <span>
+                    <ul>
+                        {% for r in region %}
+                        <div>
+                            <input name="{{ r.regionName }}" type="checkbox" value="{{ r.regionId }}"> {{ r.regionName}}
+                        </div>
+
+                        {% endfor %}
+                    </ul>
+
+                </span>
+            </div>
+            <div>
+                <span>Which type of attractions do you prefere, plese select three of them</span>
+                <span>
+                    <ul>
+                        {% for i in category %}
+                        <div>
+                            <input name="{{ i.categoryName }}" type="checkbox" value="{{ i.categoryId }}"> {{ i.categoryName }}
+                        </div>
+                        {% endfor %}
+                    </ul>
+                </span>
+                    <button type="button" onclick="getnextpage('step1')">last page</button>
+
+                    <button type="button" onclick="getnextpage('step3')">next page</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    <div class="container" id="step3">
+        <div class="row">
+            <div class="form-group col-md-3">
+                <input type="hidden" id="who_publish" value="{{request.user.id}}">
+                <div>
+                    <span>Input Title</span>
+                    <span><input type="text" id="bigRoute_title" class="form-control"
+                            placeholder="input title here"></span>
+                </div>
+                <div>
+                    <span>How many days?</span>
+                    <span><input type="text" id="days" class="form-control"
+                            placeholder="how many days you will travel?"></span>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <button type="button" onclick="getnextpage('step2')">下一页</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    {% endblock %}
