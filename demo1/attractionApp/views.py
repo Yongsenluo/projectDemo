@@ -1,11 +1,4 @@
-from ast import If
-from ctypes.wintypes import PINT
-from dataclasses import field
-import http
-import imp
-import re
-from traceback import print_tb
-from unicodedata import category
+
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 

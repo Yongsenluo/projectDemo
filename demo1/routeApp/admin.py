@@ -1,7 +1,7 @@
 from atexit import register
 import imp
 from django.contrib import admin
-from .models import bigRouteModels,dayRouteModels,likeModels,commentModels
+from .models import bigRouteModels,dayRouteModels,likeModels,commentModels, recommendModels
 
 # Register your models here.
 
@@ -18,5 +18,9 @@ class likeAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(commentModels)
+class commentAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(recommendModels)
 class commentAdmin(admin.ModelAdmin):
     pass

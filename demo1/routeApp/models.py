@@ -1,6 +1,7 @@
+from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
-from attractionApp.models import cityModels,attractionModels
+from attractionApp.models import categoryModels, cityModels,attractionModels, regionModels
 # Create your models here.
 
 class bigRouteModels(models.Model):
@@ -30,9 +31,15 @@ class dayRouteModels(models.Model):
     dayRoutetoBigRoute = models.ForeignKey(verbose_name = "below to which big route",to=bigRouteModels,on_delete=models.CASCADE)
     dayRouteCity = models.ManyToManyField(cityModels)
     dayRouteAttraction = models.ManyToManyField(attractionModels)
+    dayRouteNumber = models.IntegerField(verbose_name="day number",default=0)
     class Meta:
         verbose_name_plural = "Day Route"
 
+# class dayRCModels(models.Model):
+#     dayRoute = models.ForeignKey(verbose_name="dayRoute",to=dayRouteModels,on_delete=models.CASCADE)
+#     dayRouteCity = models.ForeignKey(verbose_name="day_route_city",to=cityModels,on_delete=models.CASCADE)
+#     class Meta:
+#         verbose_name_plural = "M2M dayRoute - city"
 
 
 class commentModels (models.Model):
@@ -54,3 +61,24 @@ class likeModels (models.Model):
     likeRoute =models.ForeignKey(verbose_name="like route id",to=bigRouteModels,on_delete=models.CASCADE)
     class Meta:
         verbose_name_plural = "like table"
+
+
+class recommendModels (models.Model):
+    recommendRegion = models.ManyToManyField(regionModels)
+    recommendCategory = models.ManyToManyField(categoryModels)
+    recommendBigRoute = models.OneToOneField(bigRouteModels,on_delete=models.CASCADE,primary_key=True)
+
+    class Meta:
+        verbose_name_plural = "recommend table"
+
+# class M2MRecommendtoRegion (models.Model):
+#     recommend = models.ForeignKey(verbose_name="which recommend",to=recommendModels,on_delete=models.CASCADE)
+#     region = models.ForeignKey(verbose_name="which region",to=regionModels,on_delete=models.CASCADE)
+#     class Meta:
+#         verbose_name_plural = "M2M recommend - region"
+
+# class M2MRecommendtoCategory (models.Model):
+#     recommend = models.ForeignKey(verbose_name="which recommend",to=recommendModels,on_delete=models.CASCADE)
+#     category = models.ForeignKey(verbose_name="which category",to=categoryModels,on_delete=models.CASCADE)
+#     class Meta:
+#         verbose_name_plural = "M2M recommend - category"

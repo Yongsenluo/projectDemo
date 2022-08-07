@@ -8,10 +8,86 @@ home page
 
 
 {% block body_block %}
-<!-- <link rel="stylesheet" href="{% static '/plugins/bootstrap-5.2.0-dist/css/bootstrap.css' %}"> -->
+
+{% csrf_token %}
+<div class="container" id="step1">
+    <div class="row">
+        <div class="form-group col-md-3">
+                <input type="hidden" id="who_publish" value="{{request.user.id}}">
+                <div>
+                    <span>Input Title</span>
+                    <span>
+                        <input type="text" id="bigRoute_title" name="bigRoute_title" class="form-control" placeholder="input title here">
+                    </span>
+                </div>
+                <div>
+                    <span>How many days?</span>
+                    <span><input type="text" id="days" class="form-control" name="days" placeholder="how many days you will travel?"></span>
+                    </select>
+                </div>
+                <h3 class="container">
+                    Questionnaire
+                </h3>
+                <div>
+                    <span>Which region do you want to go?</span>
+                    <span>
+                        <ul>
+                            {% for r in region %}
+                            <div>
+                                <input id="{{ r.regionId }}" name="region" type="checkbox" value="{{ r.regionName }}">
+                                {{r.regionName}}
+                            </div>
+
+                            {% endfor %}
+                        </ul>
+
+                    </span>
+                </div>
+                <div>
+                    <span>Which type of attractions do you prefere, plese select three of them</span>
+
+                    <span>
+                        <ul>
+                            {% for i in category %}
+                            <div>
+                                <input name="category" id ="{{i.categoryId}}" type="checkbox" value="{{ i.categoryId }}">
+                                {{i.categoryName }}
+                            </div>
+                            {% endfor %}
+                        </ul>
+                    </span>
+                    <!-- <button type="submit" onclick="getnextpage('step2')">Create</button> -->
+                    <button type="submit" id="submit" onclick="search()">Create</button>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- <div class="container" id="step2">
+    <div class="row">
+        <div class="form-group col-md-3">
+            <input type="hidden" id="who_publish" value="{{request.user.id}}">
+            <div>
+                <span>开始编辑你的行程。。。</span>
+                <span><input type="text" id="bigRoute_title" class="form-control" placeholder="input title here"></span>
+            </div>
+            <div>
+                <span>How many days?</span>
+                <span><input type="text" id="days" class="form-control"
+                        placeholder="how many days you will travel?"></span>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <button type="button" onclick="getnextpage('step3')">下一页</button>
+        </div>
+    </div>
+</div> -->
 <script src="{% static '/plugins/jquery/jquery.min.js' %}"></script>
 <script src="{% static '/plugins/bootstrap-5.2.0-dist/js/bootstrap.js' %}"></script>
-<style>
+<!-- <style>
     #step1 {
         display: block;
     }
@@ -28,112 +104,92 @@ home page
         width: 100%;
         height: 40%;
         left: 30%;
-        top: 15%;
+        top: 20%;
     }
-</style>
-<script>
-    function getnextpage(i) {
-        alert(i);
-        var step = new Array("step1", "step2", "step3");
+</style> -->
+<script language="JavaScript">
+    // function getnextpage(i) {
+    //     alert(i);
+    //     var step = new Array("step1", "step2");
 
-        for (var h = 0; h < step.length; h++) {
-            if (i == step[h]) {
-                console.log('giao')
-                document.getElementById(i).style.display = "block";
-            } else {
-                console.log('giaogiao')
-                document.getElementById(step[h]).style.display = "none";
+    //     for (var h = 0; h < step.length; h++) {
+    //         if (i == step[h]) {
+    //             console.log('giao')
+    //             document.getElementById(i).style.display = "block";
+    //         } else {
+    //             console.log('giaogiao')
+    //             document.getElementById(step[h]).style.display = "none";
+    //         }
+    //     }
+    //     if(i == "step2"){
+    //         search();
+    //     }
+
+
+    // }
+
+    function search() {
+        console.log("hi")
+        var user = document.getElementById("who_publish").value
+        var radio = document.getElementsByName("region");
+        console.log(radio)
+        var post_data = new Array();
+        var number = 0;
+        for (var n = 0; n < radio.length; n++) {
+            // 挑选出被选的单位
+            if (radio[n].checked == true) {
+                //console.log(radio[n]);
+                //console.log(radio[n].value)
+                post_data.push(radio[n].id);
+                number++
             }
         }
+        //console.log("giao!!!!!!!!!!!!!")
+        var attractions = document.getElementsByName("category");
+        //console.log(attractions)
+
+        var atttraction = new Array();
+        for (var j = 0; j < attractions.length; j++) {
+            if( attractions[j].checked == true ){
+                atttraction.push(attractions[j].id);
+            }
+        }
+        console.log(atttraction);
+        var title = document.getElementById('bigRoute_title').value;
+        //console.log("giao.........////")
+        
+        //console.log(title);
+        var days = document.getElementById("days").value;
+        //console.log(days);
+        all_data={
+            'user':user,
+            'title': title,
+            'days': days,
+            'city':post_data,
+            'category':atttraction
+
+        }
+
+
+        $.ajax({
+            type: "POST",
+            url: "/createRoute/",
+            data: JSON.stringify(all_data),
+            // data: {
+            //     'post_data':post_data
+            // },
+            //---------giao----------
+            dataType: 'json',
+            //---------giao----------
+
+            success: function (data) {
+                console.log('giaogggggg');
+            }
+        })
+
     }
-
 </script>
-{% csrf_token %}
-<div class="container" id="step1">
-    <div class="row">
-        <div class="form-group col-md-3">
-            <input type="hidden" id="who_publish" value="{{request.user.id}}">
-            <div>
-                <span>Input Title</span>
-                <span><input type="text" id="bigRoute_title" class="form-control" placeholder="input title here"></span>
-            </div>
-            <div>
-                <span>How many days?</span>
-                <span><input type="text" id="days" class="form-control"
-                        placeholder="how many days you will travel?"></span>
-                </select>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <button type="button" onclick="getnextpage('step2')">next page</button>
-        </div>
-    </div>
-</div>
-
-<div class="container" id="step2">
-    <div class="row">
-        <div class="form-group col-md-3">
-            <div>
-                <span>Which region do you want to go?</span>
-                <span>
-                    <ul>
-                        {% for r in region %}
-                        <div>
-                            <input name="{{ r.regionName }}" type="checkbox" value="{{ r.regionId }}"> {{ r.regionName}}
-                        </div>
-
-                        {% endfor %}
-                    </ul>
-
-                </span>
-            </div>
-            <div>
-                <span>Which type of attractions do you prefere, plese select three of them</span>
-                <span>
-                    <ul>
-                        {% for i in category %}
-                        <div>
-                            <input name="{{ i.categoryName }}" type="checkbox" value="{{ i.categoryId }}"> {{ i.categoryName }}
-                        </div>
-                        {% endfor %}
-                    </ul>
-                </span>
-                    <button type="button" onclick="getnextpage('step1')">last page</button>
-
-                    <button type="button" onclick="getnextpage('step3')">next page</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-    <div class="container" id="step3">
-        <div class="row">
-            <div class="form-group col-md-3">
-                <input type="hidden" id="who_publish" value="{{request.user.id}}">
-                <div>
-                    <span>Input Title</span>
-                    <span><input type="text" id="bigRoute_title" class="form-control"
-                            placeholder="input title here"></span>
-                </div>
-                <div>
-                    <span>How many days?</span>
-                    <span><input type="text" id="days" class="form-control"
-                            placeholder="how many days you will travel?"></span>
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <button type="button" onclick="getnextpage('step2')">下一页</button>
-            </div>
-        </div>
-    </div>
 
 
 
-
-
-
-    {% endblock %}
+{% endblock %}
