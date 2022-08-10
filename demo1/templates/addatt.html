@@ -8,7 +8,7 @@ home page
 {% block body_block %}
 <style>
     .form {
-        width: 1000px;
+        width: 700px;
         box-shadow: 0 0 3px 0 rgb(0, 0, 0, 0.3);
         background: white;
         padding: 20px;
@@ -22,71 +22,76 @@ home page
         font-size: 15px;
         background-color: #dce1e6;
         float: left;
+    }
 
+    .form1 {
+        width: 700px;
+        box-shadow: 0 0 3px 0 rgb(0, 0, 0, 0.3);
+        background: white;
+        padding: 20px;
+        margin: 1% auto 0;
     }
 </style>
 {% csrf_token %}
-<link rel="stylesheet" href="{% static 'plugins/bootstrap/signup.css' %}">
 <div class="form">
-    <div>
+    <div class="sen">
+        <h3 style="text-align: center;">
+            Add Attraction Please
+        </h3>
+
+        <input type="hidden" id="dayRoute_Id" value="{{dayRouteObject.dayRouteId}}">
+
+        The type of attractions you enjoyed more on this trip:
+        {% for i in recommendCategory %}
+
+        {{i.categoryName}},
+        {% endfor %}
+
+        </br>
+
+        The city you are going to today is:
+        {% for i in todayCity %}
+        {% if i.cityName %}
+        {{ i.cityName }},
+        {% else %}
+        {{i}}
+        {% endif %}
+        {% endfor %}
+
+        </br>
+        </br>
+
+        Depending on your preferences, the recommended attractions:
+        </br>
+        {% for i in allAttractionResult %}
+        <input name="attraction" id="{{i.attractionId}}" type="checkbox" value="{{ i.attractionId }}">
+        {{i.attractionName}} ({{i.attractionLikes}})</br>
+
+        {% endfor %}
+
+        </br>
+        </br>
+
+        There are other famous attractions of this city:
+        </br>
+        {% for i in excludeReList %}
+
+        <input name="attraction" id="{{i.attractionId}}" type="checkbox" value="{{ i.attractionId }}">
+        {{i.attractionName}} ({{i.attractionLikes}})</br>
+
+        {% endfor %}
+
+
+
+        <a class="returnA" href="{% url 'routeApp:dayRouteDetail' dayRouteObject.dayRouteId %}">
+            Return
+        </a>
+
         <div>
-            <div>
-                <h3 style="text-align: center;">
-                    Add Attraction Please
-                </h3>
-                <input type="hidden" id="dayRoute_Id" value="{{dayRouteObject.dayRouteId}}">
-
-                <div>
-                    The type of attractions you enjoyed more on this trip:
-                    {% for i in recommendCategory %}
-                    {{i.categoryName}},
-                    {% endfor %}
-                </div>
-                <div>
-                    The city you are going to today is:
-                    {% for i in todayCity %}
-                    {% if i.cityName %}
-                    {{ i.cityName }},
-                    {% else %}
-                    {{i}}
-                    {% endif %}
-                    {% endfor %}
-                </div>
-                <div>
-                    Depending on your preferences, the recommended attractions:
-                    <div>
-                        {% for i in allAttractionResult %}
-                        <div>
-                            <input name="attraction" id="{{i.attractionId}}" type="checkbox"
-                                value="{{ i.attractionId }}">
-                            {{i.attractionName}} ({{i.attractionLikes}})
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-                <div>
-                    There are other famous attractions of this city:
-                    <div>
-                        {% for i in excludeReList %}
-                    </div>
-                    <div>
-                        <input name="attraction" id="{{i.attractionId}}" type="checkbox" value="{{ i.attractionId }}">
-                        {{i.attractionName}} ({{i.attractionLikes}})
-                    </div>
-                    {% endfor %}
-                </div>
-                <a class="returnA" href="{% url 'routeApp:dayRouteDetail' dayRouteObject.dayRouteId %}">
-                    Return
-                </a>
-                <div>
-                    <button type="submit" id="submit" onclick="addAttraction()" style="float: right;">Add</button>
-                    <br />
-                </div>
-
-                     
-    
-            </div>
+            <button type="submit" id="submit" onclick="addAttraction()" style="float: right;">Add</button>
+            <br />
         </div>
+
     </div>
 </div>
 

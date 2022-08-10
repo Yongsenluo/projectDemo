@@ -43,10 +43,10 @@ def map(requests):
 @csrf_exempt
 def geocoding(requests):
     if requests.method == 'POST':
-        #try:
+        try:
             address = requests.POST.get('address')
             json = gecodingAddress(address)
-            #print(json)
+            print(json)
             placeId = json['results'][0].get("place_id")
             placeType = json['results'][0].get("types")
             json2 = placeJson(placeId)
@@ -85,7 +85,7 @@ def geocoding(requests):
                 print("不存在，创建")
                 createAttraction(json)
             return render(requests,'testMap.html',{'LatLng': latLngContext})
-        #except:
+        except:
             return HttpResponse("this attraction not exit")
             
     return render(requests, "testMap.html")
