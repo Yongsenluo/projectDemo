@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+everyday map
+{% endblock %}
+
+{% block body_block %}
+<style>
+    .form {
+        width: autho;
+        box-shadow: 0 0 3px 0 rgb(0, 0, 0, 0.3);
+        background: white;
+        padding: 20px;
+        margin: 3% auto 0;
+    }
+
+    .returnA {
+        color: #000000;
+        padding: 4px;
+        text-decoration: none;
+        font-size: 15px;
+        background-color: #dce1e6;
+        float: right;
+
+    }
+</style>
+<link rel="stylesheet" href="{% static '/css/googleMap.css' %}">
+{% csrf_token %}
+<div class="form">
+    <div style="text-align:center">
+
+        <body onload="initialize()">
+            <div id="map" style="width: 1300px; height: 600px;">
+            </div>
+
+            <h4>
+                Marker in the map is the places we need to go today
+            </h4>
+
+            {% for i in dir %}
+            <input type="hidden" id="{{i.atttractionId}}" name="lat" value="{{i.attractionLat}}">
+            Place Name: {{i.attractionName}}</br>
+
+            <input type="hidden" id="{{i.atttractionId}}" name="lng" value="{{i.attractionLng}}">
+
+            {% endfor %}
+
+            <div>
+                --------------------------------------------
+            </div>
+            <div>
+                <a class="returnA" href="{% url 'routeApp:dayRouteDetail' dayRouteObject.dayRouteId %}">
+                    Return
+                </a>
+            </div>
+    </div>
+</div>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzgKg6zPvAkeEVugOuHFJf7VNRx5VvZW4&callback=initMap&v=weekly&language=en"
+    defer></script>
+<script>
+    var geocoder;
+    var map;
+
+
+    function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var latObjects = document.getElementsByName("lat")
+        var lngObjects = document.getElementsByName("lng")
+
+        var latlng = new google.maps.LatLng(Number(latObjects[0].value), Number(lngObjects[0].value));
+        var mapOptions = {
+            zoom: 13,
+            center: latlng
+        }
+
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+        var latObjects = document.getElementsByName("lat")
+        var lngObjects = document.getElementsByName("lng")
+        console.log(latObjects)
+        for (var n = 0; n < latObjects.length; n++) {
+            lat = latObjects[n].value
+            lng = lngObjects[n].value
+            //console.log(lat)
+            // 转number 类型
+            lat = Number(lat)
+            lng = Number(lng)
+            //console.log(lat)
+            var positions = new google.maps.LatLng(lat, lng);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: positions
+            });
+        }
+
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- <script>
+            $("#submit").click(function () {
+                    $.ajax({
+                        url: '',
+                        type: 'POST',
+                        data: {
+                            address: $('#address').val()
+                        },
+                        success: function(data){
+                            console.log(data)
+                        }
+                    })
+                })
+        </script>  -->
+
+
+{% endblock %}

@@ -14,6 +14,16 @@ home page
         padding: 20px;
         margin: 3% auto 0;
     }
+
+    .returnA {
+        color: #000000;
+        padding: 4px;
+        text-decoration: none;
+        font-size: 15px;
+        background-color: #dce1e6;
+        float: left;
+
+    }
 </style>
 {% csrf_token %}
 <link rel="stylesheet" href="{% static 'plugins/bootstrap/signup.css' %}">
@@ -27,13 +37,13 @@ home page
                 <input type="hidden" id="dayRoute_Id" value="{{dayRouteObject.dayRouteId}}">
 
                 <div>
-                    这次旅行你比较喜欢的景点类型：
+                    The type of attractions you enjoyed more on this trip:
                     {% for i in recommendCategory %}
                     {{i.categoryName}},
                     {% endfor %}
                 </div>
                 <div>
-                    你今天要去的城市是：
+                    The city you are going to today is:
                     {% for i in todayCity %}
                     {% if i.cityName %}
                     {{ i.cityName }},
@@ -43,18 +53,19 @@ home page
                     {% endfor %}
                 </div>
                 <div>
-                    根据您的喜欢，推荐的景点有这些：
+                    Depending on your preferences, the recommended attractions:
                     <div>
                         {% for i in allAttractionResult %}
                         <div>
-                            <input name="attraction" id="{{i.attractionId}}" type="checkbox" value="{{ i.attractionId }}">
+                            <input name="attraction" id="{{i.attractionId}}" type="checkbox"
+                                value="{{ i.attractionId }}">
                             {{i.attractionName}} ({{i.attractionLikes}})
                         </div>
                     </div>
                     {% endfor %}
                 </div>
                 <div>
-                    除此之外以外，还有其他这个城市著名的景点：
+                    There are other famous attractions of this city:
                     <div>
                         {% for i in excludeReList %}
                     </div>
@@ -64,10 +75,16 @@ home page
                     </div>
                     {% endfor %}
                 </div>
+                <a class="returnA" href="{% url 'routeApp:dayRouteDetail' dayRouteObject.dayRouteId %}">
+                    Return
+                </a>
                 <div>
                     <button type="submit" id="submit" onclick="addAttraction()" style="float: right;">Add</button>
                     <br />
                 </div>
+
+                     
+    
             </div>
         </div>
     </div>

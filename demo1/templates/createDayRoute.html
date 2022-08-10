@@ -19,12 +19,14 @@ home page
                 Route Titile: {{ bigRouteObject.routeName }}<br />
                 Route User: {{ bigRouteObject.routeUser.username }}<br />
                 Route Create Date: {{ bigRouteObject.routeDate }}<br />
+                Route Likes: {{bigRouteObject.routeLike}}<br />
+                Route Comments: {{bigRouteObject.routeComment}}<br />
             </div>
         </div>
         <!--水平线-->
-        <div class="seg"></div>
+        <!-- <div class="seg"></div> -->
 
-        {% for i in allDayRouteObjecs %}
+        <!-- {% for i in allDayRouteObjecs %}
         <div class="nav">
             <div class="nav-title123">
                 <a id={{i.dayRouteId}} name="dayRouteId" href="{% url 'routeApp:dayRouteDetail' i.dayRouteId %}" style="color: white; ">
@@ -33,14 +35,24 @@ home page
             </div>
         </div>
         <div class="seg"></div>
-        {% endfor %}
+        {% endfor %} -->
 
 
         <!--右侧内容区-->
 
     </div>
-    <div class="content-right">
-        <h1>内容区</h1>
+    <div class="content-right" style="background-color: white;">
+        {% for i in allDayRouteObjecs %}
+        <div class="nav">
+            <div class="nav-title123" style="color: black;">
+                <a id={{i.dayRouteId}} name="dayRouteId" href="{% url 'routeApp:dayRouteDetail' i.dayRouteId %}" style="color: black; font-size: medium; ">
+                    Day {{ i.dayRouteNumber }}
+                </a>
+            </div>
+        </div>
+        <div class="seg"></div>
+        {% endfor %}
+
     </div>
 </div>
 
@@ -48,17 +60,17 @@ home page
     // var href = $('#a-link').attr('href');
     // $('#a-link').attr('href',href + $("#paymoney").text());
 
-    $(".nav-title123>a").each(function () {
+    // $(".nav-title123>a").each(function () {
 
-        $(this).click(
-            function (data) {
-                //动态获取点击的id
-                var dayRouteId = data.target.id;
-                        $(".content-right").html($(this).html());
-                        console.log('giaogggggg');
-                    }
-        )
-    })
+    //     $(this).click(
+    //         function (data) {
+    //             //动态获取点击的id
+    //             var dayRouteId = data.target.id;
+    //                     $(".content-right").html($(this).html());
+    //                     console.log('giaogggggg');
+    //                 }
+    //     )
+    // })
 </script>
 
 

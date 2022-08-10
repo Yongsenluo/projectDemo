@@ -114,81 +114,86 @@ def createDayRoute(requests, bigRoute_id):
 
 
 def addAttration(requests, bigRouteObject,dayRouteObject):
-    print(dayRouteObject)
-    br = bigRouteObject
-    ro = recommendModels.objects.get(recommendBigRoute=br)
-    #所有推荐的景点种类对象
-    rc = ro.recommendCategory.all()
-    print(rc)
+    try:
+        print(dayRouteObject)
+        br = bigRouteObject
+        ro = recommendModels.objects.get(recommendBigRoute=br)
+        #所有推荐的景点种类对象
+        rc = ro.recommendCategory.all()
+        print(rc)
 
-    #所有推荐的region对象
-    rr = ro.recommendRegion.all()
-    print(rr)
+        #所有推荐的region对象
+        rr = ro.recommendRegion.all()
+        print(rr)
 
-    #找到所有region=推荐的city
-    for i in rr:
-        allCity = cityModels.objects.filter(cityRegion = i)
-    # print("...................")
-    #print(allCity)
-
-    allAttractionResult={}
-    #找到所有category=推荐的attracation
-    for i in rc:
-        attraction = attractionModels.objects.filter(attractionCategory = i).order_by('attractionLikes')
-        #print(attraction)
-        for h in allCity:
-            #print(h.cityName)
-            result = attraction.filter(attractionCity = h)
-            if result.exists():
-                allAttractionResult=result
-    # print("...................qqqqqq")
-    # print(allAttractionResult)
-    todayCity = dayRouteObject.dayRouteCity.all()
-    if todayCity.count() ==0:
-        str = "You haven't picked a city yet"
-        todayCity = str
+        #找到所有region=推荐的city
+        for i in rr:
+            allCity = cityModels.objects.filter(cityRegion = i)
+        # print("...................")
+        #print(allCity)
 
 
-    # print("...........teste!!!!")
-    # print(todayCity)
+        dayRouteCityObject2 = dayRouteObject.dayRouteCity.all()
+        allAttractionResult={}
+        #找到所有category=推荐的attracation
+        for i in rc:
+            attraction = attractionModels.objects.filter(attractionCategory = i).order_by('attractionLikes')
+            #print(attraction)
+            for h in dayRouteCityObject2:
+                #print(h.cityName)
+                result = attraction.filter(attractionCity = h)
+                if result.exists():
+                    allAttractionResult=result
+        print("...................qqqqqq")
+        print(allAttractionResult)
+        todayCity = dayRouteObject.dayRouteCity.all()
+        if todayCity.count() ==0:
+            str = "You haven't picked a city yet"
+            todayCity = str
 
-    #首先找到城市为todayCity的景点
 
-     #除了推荐的，还有其他在这个城市著名的景点
+        # print("...........teste!!!!")
+        # print(todayCity)
 
-    dayRouteCityObject = dayRouteObject.dayRouteCity.all()
-    #空的原因是，前端还没有选去的城市
-    print(dayRouteCityObject)
-    for j in dayRouteCityObject:
-        aObject = attractionModels.objects.filter(attractionCity=j).order_by('-attractionLikes')
-        if aObject.count() == 0:
-            break
-        else:
-            print("giaogiaogiao")
-            print(aObject)
-            for h in allAttractionResult:
-                print(h)
-                aObject = aObject.exclude(attractionId = h.attractionId)
-                print("删除后。。。。")
+        #首先找到城市为todayCity的景点
+
+        #除了推荐的，还有其他在这个城市著名的景点
+
+        dayRouteCityObject = dayRouteObject.dayRouteCity.all()
+        #空的原因是，前端还没有选去的城市
+        print(dayRouteCityObject)
+        for j in dayRouteCityObject:
+            aObject = attractionModels.objects.filter(attractionCity=j).order_by('-attractionLikes')
+            if aObject.count() == 0:
+                break
+            else:
+                print("giaogiaogiao")
                 print(aObject)
-            excludeRelist = aObject
-       
+                for h in allAttractionResult:
+                    #print(h)
+                    aObject = aObject.exclude(attractionId = h.attractionId)
+                    #print("删除后。。。。")
+                    #print(aObject)
+                excludeRelist = aObject
+        
 
-    print(excludeRelist)
-    # print('hihihihihi..............')
-    # print(excludeReList)
+        print(excludeRelist)
+        # print('hihihihihi..............')
+        # print(excludeReList)
 
 
-    dir = {
-        'dayRouteObject':dayRouteObject,
-        'recommendCategory': rc,
-        'recommendRegion': rr,
-        'recommendCity':allCity,
-        'allAttractionResult':allAttractionResult,
-        'todayCity':todayCity,
-       'excludeReList': excludeRelist,
-    }
-    return dir
+        dir = {
+            'dayRouteObject':dayRouteObject,
+            'recommendCategory': rc,
+            'recommendRegion': rr,
+            'recommendCity':allCity,
+            'allAttractionResult':allAttractionResult,
+            'todayCity':todayCity,
+            'excludeReList': excludeRelist,
+        }
+        return dir
+    except:
+        return HttpResponse("You didn't select the city")
 
 @csrf_exempt
 def addCityMethod(requests,bigRouteObject,dayRouteObject):
@@ -223,67 +228,99 @@ def addCityMethod(requests,bigRouteObject,dayRouteObject):
 
     return dir
 
+
+
+@csrf_exempt
+def everyDayMap(requests,dayRouteObject):
+    attractionObjects =  dayRouteObject.dayRouteAttraction.all()
+    print(attractionObjects)
+    dir = []
+    for i in attractionObjects:    
+        latLng = {}
+        lat = i.attractionLat
+        lng = i.attractionLng
+        latLng = {
+            'lat':lat,
+            'lng':lng
+        }
+        print(latLng)
+
+        dir.append(latLng)
+    
+    print(dir)
+        
+    return attractionObjects
+
+
 @csrf_exempt
 def dayRouteDetail(requests, dayRoute_id):
-    dayRouteObject = dayRouteModels.objects.get(dayRouteId=dayRoute_id)
-    bigRouteObject = dayRouteObject.dayRoutetoBigRoute
-    dayRouteCity = dayRouteObject.dayRouteCity.all()
-    dayRouteAttraction = dayRouteObject.dayRouteAttraction.all()
-    content = {
-        'dayRouteObject': dayRouteObject,
-        'dayRouteCity': dayRouteCity,
-        'dayRouteAttraction': dayRouteAttraction,
-    }
-    # print("giao....")
-    # print(dayRouteCity)
+    try:
+        dayRouteObject = dayRouteModels.objects.get(dayRouteId=dayRoute_id)
+        bigRouteObject = dayRouteObject.dayRoutetoBigRoute
+        dayRouteCity = dayRouteObject.dayRouteCity.all()
+        dayRouteAttraction = dayRouteObject.dayRouteAttraction.all()
+        content = {
+            'dayRouteObject': dayRouteObject,
+            'dayRouteCity': dayRouteCity,
+            'dayRouteAttraction': dayRouteAttraction,
+        }
+        # print("giao....")
+        # print(dayRouteCity)
 
-    if requests.method == 'POST':
-        deleteButton = requests.POST.get('delete_button')
-        deleteButtonCity = requests.POST.get('delete_button_city')
-        addCity = requests.POST.get('addCity')
-        addAttractionButton = requests.POST.get("addAttraction")
-        print(deleteButton)
-        print(addAttractionButton)
-        if deleteButton is not None:
-            print("这里是delete")
-            attractionId = int(requests.POST.get('delete_button'))
-            attractionObject = attractionModels.objects.get(
-                attractionId=attractionId)
-            print(dayRouteObject.dayRouteAttraction.all())
-            print("删除后。。。。。。")
-            dayRouteObject.dayRouteAttraction.remove(attractionObject)
-            print(dayRouteObject.dayRouteAttraction.all())
-            content = {
-                'dayRouteObject': dayRouteObject,
-                'dayRouteCity': dayRouteCity,
-                'dayRouteAttraction': dayRouteAttraction,
-            }
-            return render(requests, 'dayRouteTem.html', content)
+        if requests.method == 'POST':
+            deleteButton = requests.POST.get('delete_button')
+            deleteButtonCity = requests.POST.get('delete_button_city')
+            addCity = requests.POST.get('addCity')
+            addAttractionButton = requests.POST.get("addAttraction")
+            mapButton = requests.POST.get("map")
+            if deleteButton is not None:
+                print("这里是delete")
+                attractionId = int(requests.POST.get('delete_button'))
+                attractionObject = attractionModels.objects.get(
+                    attractionId=attractionId)
+                print(dayRouteObject.dayRouteAttraction.all())
+                print("删除后。。。。。。")
+                dayRouteObject.dayRouteAttraction.remove(attractionObject)
+                print(dayRouteObject.dayRouteAttraction.all())
+                content = {
+                    'dayRouteObject': dayRouteObject,
+                    'dayRouteCity': dayRouteCity,
+                    'dayRouteAttraction': dayRouteAttraction,
+                }
+                return render(requests, 'dayRouteTem.html', content)
 
-        elif deleteButtonCity is not None:
-            print("here is city delete")
-            cityId = int(requests.POST.get('delete_button_city'))
-            cityObject = cityModels.objects.get(cityId = cityId)
-            dayRouteObject.dayRouteCity.remove(cityObject)
-            content = {
-                'dayRouteObject': dayRouteObject,
-                'dayRouteCity': dayRouteCity,
-                'dayRouteAttraction': dayRouteAttraction,
-            }
-            return render(requests, 'dayRouteTem.html', content)
-        elif addAttractionButton is not None:
-            print("这里是add attraction")
-            dir = addAttration(requests, bigRouteObject,dayRouteObject)
-            return render(requests, 'addatt.html', dir)
+            elif deleteButtonCity is not None:
+                print("here is city delete")
+                cityId = int(requests.POST.get('delete_button_city'))
+                cityObject = cityModels.objects.get(cityId = cityId)
+                dayRouteObject.dayRouteCity.remove(cityObject)
+                content = {
+                    'dayRouteObject': dayRouteObject,
+                    'dayRouteCity': dayRouteCity,
+                    'dayRouteAttraction': dayRouteAttraction,
+                }
+                return render(requests, 'dayRouteTem.html', content)
+            elif addAttractionButton is not None:
+                print("这里是add attraction")
+                dir = addAttration(requests, bigRouteObject,dayRouteObject)
+                return render(requests, 'addatt.html', dir)
+            elif addCity is not None:
+                print("这里是add city")
+                dir = addCityMethod(requests,bigRouteObject,dayRouteObject)
+                return render(requests, 'addCity.html',dir)
+            elif mapButton is not None:
+                dir = everyDayMap(requests,dayRouteObject=dayRouteObject)
+                content={
+                    'dir':dir,
+                    'dayRouteObject':dayRouteObject
+                }
+                return render(requests, 'everyDayMap.html',content)
+            else:
+                return HttpResponse("什么都没有")
 
-        elif addCity is not None:
-            print("这里是add city")
-            dir = addCityMethod(requests,bigRouteObject,dayRouteObject)
-            return render(requests, 'addCity.html',dir)
-        else:
-            return HttpResponse("什么都没有")
-
-    return render(requests, 'dayRouteTem.html', content)
+        return render(requests, 'dayRouteTem.html', content)
+    except:
+        return HttpResponse("please select the city")
 
 
 @csrf_exempt
@@ -320,3 +357,5 @@ def addAttraction2(requests):
 
     url = '/dayRouteTem/dayRouteId='+ dayRoute_Id
     return JsonResponse({'msg': url})
+
+

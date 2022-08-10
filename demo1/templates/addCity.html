@@ -14,6 +14,15 @@ home page
         padding: 20px;
         margin: 3% auto 0;
     }
+    .returnA {
+    color: #000000;
+    padding: 4px;
+    text-decoration: none;
+    font-size: 15px;
+    background-color: #dce1e6;
+    float: left;
+
+}
 </style>
 {% csrf_token %}
 <link rel="stylesheet" href="{% static 'plugins/bootstrap/signup.css' %}">
@@ -24,13 +33,13 @@ home page
         </h3>
         <input type="hidden" id="dayRoute_Id" value="{{dayRouteObject.dayRouteId}}">
         <div>
-            这次旅行你比较喜欢的城市地点：
+            Your preferred city location for this trip:
             {% for i in recommendRegion %}
             {{i.regionName}},
             {% endfor %}
         </div>
         <div>
-            根据您的喜欢，推荐的城市有这些：
+            Depending on your preference, recommended cities:
             <div>
                 {% for i in recommendCity %}
                 <div>
@@ -41,7 +50,7 @@ home page
             {% endfor%}
         </div>
         <div>
-            除了上面的城市，其他城市在英国排名也很高：
+            In addition to the above cities, other cities are also ranked high in the UK:
             <div>
                 {% for i in otherCity %}
                 <div>
@@ -50,6 +59,9 @@ home page
 
                 {% endfor %}
             </div>
+            <a class="returnA" href="{% url 'routeApp:dayRouteDetail' dayRouteObject.dayRouteId %}">
+                Return
+            </a>
             <div>
 
                 <button type="submit" id="submit" onclick="addCity()" style="float: right;">Add</button>

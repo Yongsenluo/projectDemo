@@ -19,7 +19,6 @@
 .content-right {
     width: 81%;
     height: 600px;
-    background-color: #6495ED;
     float: left;
 }
 
@@ -61,4 +60,5 @@
     font-size: 50px;
     line-height: 600px;
     text-align: center;
+    color: black;
 }
