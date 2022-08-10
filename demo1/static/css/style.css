@@ -471,6 +471,25 @@ a:focus {
   color: #fff;
 }
 
+.slider2 {
+  background: url("../images/bg/homeLondon.jpg") no-repeat;
+  background-size: cover;
+  background-position: 10% 0%;
+  padding: 350px 0;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .slider {
+    padding: 150px 0;
+  }
+}
+.slider .block h1 {
+  font-size: 70px;
+  line-height: 80px;
+  font-weight: 600;
+  color: #fff;
+}
+
 
 .color-one {
   color: rgb(247, 87, 87);

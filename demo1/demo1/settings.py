@@ -158,3 +158,5 @@ LOGIN_REDIRECT_URL = "users:account"
 LOGOUT_REDIRECT_URL = "users:sign-in"
 
 BASE_COUNTRY = "UK"
+
+APPEND_SLASH=False

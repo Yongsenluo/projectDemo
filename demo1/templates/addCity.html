@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+home page
+{% endblock %}
+
+{% block body_block %}
+<style>
+    .form {
+        width: 700px;
+        box-shadow: 0 0 3px 0 rgb(0, 0, 0, 0.3);
+        background: white;
+        padding: 20px;
+        margin: 3% auto 0;
+    }
+</style>
+{% csrf_token %}
+<link rel="stylesheet" href="{% static 'plugins/bootstrap/signup.css' %}">
+<div class="form">
+    <div>
+        <h3 style="text-align: center;">
+            Add City Please
+        </h3>
+        <input type="hidden" id="dayRoute_Id" value="{{dayRouteObject.dayRouteId}}">
+        <div>
+            这次旅行你比较喜欢的城市地点：
+            {% for i in recommendRegion %}
+            {{i.regionName}},
+            {% endfor %}
+        </div>
+        <div>
+            根据您的喜欢，推荐的城市有这些：
+            <div>
+                {% for i in recommendCity %}
+                <div>
+                    <input name="city" id="{{i.cityId}}" type="checkbox" value="{{ i.cityId }}"> {{i.cityName}} ({{i.cityLikes}})
+                </div>
+
+            </div>
+            {% endfor%}
+        </div>
+        <div>
+            除了上面的城市，其他城市在英国排名也很高：
+            <div>
+                {% for i in otherCity %}
+                <div>
+                    <input name="city" id="{{i.cityId}}" type="checkbox" value="{{ i.cityId }}"> {{i.cityName}} ({{i.cityLikes}})
+                </div>
+
+                {% endfor %}
+            </div>
+            <div>
+
+                <button type="submit" id="submit" onclick="addCity()" style="float: right;">Add</button>
+                <br />
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script language="JavaScript">
+
+    function addCity() {
+        console.log("hi")
+        var radio = document.getElementsByName("city");
+        console.log(radio)
+        var post_data = new Array();
+        var number = 0;
+        for (var n = 0; n < radio.length; n++) {
+            // 挑选出被选的单位
+            if (radio[n].checked == true) {
+                //console.log(radio[n]);
+                //console.log(radio[n].value)
+                post_data.push(radio[n].id);
+                number++
+            }
+        }
+
+        var dayRoute_Id = document.getElementById("dayRoute_Id").value
+        console.log(dayRoute_Id)
+        //console.log("giao.........////")
+
+        //console.log(title);
+        //console.log(days);
+        all_data = {
+            'dayRoute_Id': dayRoute_Id,
+            'city': post_data,
+
+        }
+
+
+        $.ajax({
+            type: "POST",
+            url: "/addCity/",
+            data: JSON.stringify(all_data),
+            // data: {
+            //     'post_data':post_data
+            // },
+            //---------giao----------
+            dataType: 'json',
+            //---------giao----------
+
+            success: function (data) {
+                window.location = data.msg
+
+                console.log('giaogggggg');
+            }
+        })
+
+    }
+</script>
+{% endblock %}

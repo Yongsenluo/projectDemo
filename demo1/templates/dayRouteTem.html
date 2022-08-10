@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+home page
+{% endblock %}
+
+{% block body_block %}
+<style>
+    .form {
+        width: 700px;
+        box-shadow: 0 0 3px 0 rgb(0, 0, 0, 0.3);
+        background: white;
+        padding: 20px;
+        margin: 3% auto 0;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 2px 6px;
+        font-size: 3px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 5px #999;
+    }
+
+    .button:hover {
+        background-color: #3e8e41
+    }
+
+    .button:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+
+    .returnA {
+        color: #000000;
+        padding: 4px;
+        text-decoration: none;
+        font-size: 15px;
+        background-color: #dce1e6;
+        float: right;
+
+    }
+
+    .form-1 {
+        width: 700px;
+        background: white;
+        margin: 8% auto 0;
+    }
+</style>
+{% csrf_token %}
+<link rel="stylesheet" href="{% static 'plugins/bootstrap/signup.css' %}">
+<div class="form">
+    <h3 style="text-align: center;">
+        Day {{dayRouteObject.dayRouteNumber}} Itinerary
+    </h3>
+    <div>
+        Day Route Id: {{dayRouteObject.dayRouteId}}
+    </div>
+    <div>
+        Today City:
+        {% for i in dayRouteCity %}
+        <div>
+            <form method="POST">
+                {{i.cityName}}
+                ({{i.cityLikes}}),
+                <button id="{{i.cityId}}" type="submit" class="button" name="delete_button_city"
+                    value="{{i.cityId}}"> Delete</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    <div>
+        {% for i in dayRouteAttraction %}
+        <div>
+            <form method="POST">
+                Attraction name: {{i.attractionName}}
+                Hots: {{i.attractionLikes}}
+                <button id="{{i.attractionId}}" type="submit" class="button" name="delete_button"
+                    value="{{i.attractionId}}"> Delete</button>
+            </form>
+        </div>
+
+
+        {% endfor %}
+
+    </div>
+
+
+</div>
+<div class="form-1">
+    <form method="POST">
+        <button class="returnA" value='add' name="addCity" style="float: left;">
+            Add City
+        </button>
+        <button class="returnA" value='add' name="addAttraction" style="float: left;">
+            Add Attractions
+        </button>
+    </form>
+
+    <a class="returnA" href="{% url 'routeApp:createDayRoute' dayRouteObject.dayRoutetoBigRoute.routeId %}">
+        Return
+    </a>
+
+</div>
+
+
+
+{% endblock %}

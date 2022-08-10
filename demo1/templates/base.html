@@ -79,18 +79,20 @@
 
 
 <body>
-    <div>
-        {% block body_block %}
-        {% endblock %}
-    </div>
-
     <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer></script>
     <script src="{% static 'plugins/google-map/map.js' %}" defer></script>
+    <div>
+        {% block body_block %}
+        
+        {% endblock %}
+    </div>
+
+ 
 
 </body>
-<footer class="footer">
+<!-- <footer class="footer">
     <div class="footer-btm pt-4">
         <div class="row">
             <div class="col-lg-6">
@@ -102,7 +104,7 @@
         </div>
     </div>
 
-</footer>
+</footer> -->
 
 
 

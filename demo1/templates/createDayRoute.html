@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+home page
+{% endblock %}
+
+{% block body_block %}
+{% csrf_token %}
+<script src="{% static '/plugins/jquery/jquery.min.js' %}"></script>
+<script src="{% static '/plugins/bootstrap-5.2.0-dist/js/bootstrap.js' %}"></script>
+<link rel="stylesheet" href="{% static '/css/createDayRoute.css' %}">
+
+<div class="content">
+    <!--左侧导航栏-->
+    <div class="content-left">
+        <div class="left-title">
+            <div class="routeInformation">
+                Route Titile: {{ bigRouteObject.routeName }}<br />
+                Route User: {{ bigRouteObject.routeUser.username }}<br />
+                Route Create Date: {{ bigRouteObject.routeDate }}<br />
+            </div>
+        </div>
+        <!--水平线-->
+        <div class="seg"></div>
+
+        {% for i in allDayRouteObjecs %}
+        <div class="nav">
+            <div class="nav-title123">
+                <a id={{i.dayRouteId}} name="dayRouteId" href="{% url 'routeApp:dayRouteDetail' i.dayRouteId %}" style="color: white; ">
+                    Day {{ i.dayRouteNumber }}
+                </a>
+            </div>
+        </div>
+        <div class="seg"></div>
+        {% endfor %}
+
+
+        <!--右侧内容区-->
+
+    </div>
+    <div class="content-right">
+        <h1>内容区</h1>
+    </div>
+</div>
+
+<script language="JavaScript">
+    // var href = $('#a-link').attr('href');
+    // $('#a-link').attr('href',href + $("#paymoney").text());
+
+    $(".nav-title123>a").each(function () {
+
+        $(this).click(
+            function (data) {
+                //动态获取点击的id
+                var dayRouteId = data.target.id;
+                        $(".content-right").html($(this).html());
+                        console.log('giaogggggg');
+                    }
+        )
+    })
+</script>
+
+
+
+
+{% endblock %}

@@ -10,9 +10,19 @@ home page
 {% block body_block %}
 
 {% csrf_token %}
+<style>
+    .form {
+        width: 700px;
+        box-shadow: 0 0 3px 0 rgb(0, 0, 0, 0.3);
+        background: white;
+        padding: 30px;
+        margin: 3% auto 0;
+    }
+</style>
+<div class="form">
 <div class="container" id="step1">
-    <div class="row">
-        <div class="form-group col-md-3">
+    <div>
+        <div>
                 <input type="hidden" id="who_publish" value="{{request.user.id}}">
                 <div>
                     <span>Input Title</span>
@@ -25,7 +35,7 @@ home page
                     <span><input type="text" id="days" class="form-control" name="days" placeholder="how many days you will travel?"></span>
                     </select>
                 </div>
-                <h3 class="container">
+                <h3>
                     Questionnaire
                 </h3>
                 <div>
@@ -57,10 +67,12 @@ home page
                         </ul>
                     </span>
                     <!-- <button type="submit" onclick="getnextpage('step2')">Create</button> -->
-                    <button type="submit" id="submit" onclick="search()">Create</button>
+                    <button type="submit" id="submit" onclick="search()" style="float: right;">Create</button>
+                    <br/>
                 </div>
         </div>
     </div>
+</div>
 </div>
 </div>
 
@@ -183,6 +195,8 @@ home page
             //---------giao----------
 
             success: function (data) {
+                window.location=data.msg
+
                 console.log('giaogggggg');
             }
         })
