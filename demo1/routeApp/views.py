@@ -135,9 +135,11 @@ def addAttration(requests, bigRouteObject,dayRouteObject):
 
         dayRouteCityObject2 = dayRouteObject.dayRouteCity.all()
         allAttractionResult={}
+        #！！！！！！！！！！！！！！！！！！！！！！！！！！！ bug
+        #这里还是有问题，当category>1 的时候，for i in rc 遍历走不下去，alltractionResult不包含第二次遍历的结果
         #找到所有category=推荐的attracation
         for i in rc:
-            attraction = attractionModels.objects.filter(attractionCategory = i).order_by('attractionLikes')
+            attraction = attractionModels.objects.filter(attractionCategory = i).order_by('-attractionLikes')
             #print(attraction)
             for h in dayRouteCityObject2:
                 #print(h.cityName)

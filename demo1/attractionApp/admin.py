@@ -24,4 +24,4 @@ class categoryAdmin(admin.ModelAdmin):
 @admin.register(attractionModels)
 class attractionAdmin(admin.ModelAdmin):
     list_display = ('attractionId','attractionTrueId', 'attractionName', 'attractionLat',
-                    'attractionLng', 'attractionContent', 'attractionPostcode', 'attractionImg', 'attractionLikes', 'attractionCategory', 'attractionCity')
+                    'attractionLng', 'attractionPostcode',  'attractionLikes', 'attractionCategory', 'attractionCity')
