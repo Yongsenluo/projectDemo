@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+login page
+{% endblock %}
+
+{% block body_block %}
+<link rel="stylesheet" href="{% static 'plugins/bootstrap/signup.css' %}">
+<div class="signup_form">
+    <h6>Here are the trips you have posted before</h6> 
+
+    {% for i in route %}
+    <div>
+        <a href="{% url 'routeApp:createDayRoute' i.routeId %}">
+            Route Title : {{i.routeName}};&emsp;  Time: {{i.routeDate}}
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

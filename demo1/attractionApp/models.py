@@ -36,6 +36,7 @@ class categoryModels(models.Model):
     class Meta:
         verbose_name_plural = "category"
 
+# attraction models
 class attractionModels(models.Model):
     attractionId = models.AutoField(verbose_name="attraction id",primary_key=True)
     attractionName = models.CharField(verbose_name="attraction name", max_length=128)

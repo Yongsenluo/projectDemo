@@ -3,11 +3,15 @@ from django.shortcuts import render
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login,authenticate,logout
+
+from routeApp.models import bigRouteModels
 from .models import UserInformation
 from user.form import SignUpForm
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+
 
 def signupUser(request):
     if request.method == 'POST':
@@ -45,3 +49,10 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return redirect('/home/')
+
+@login_required
+def userinformation(requests):
+    user = requests.user
+    route = bigRouteModels.objects.filter(routeUser = user)
+    print(route)
+    return render(requests,'userinformation.html',{'route':route})

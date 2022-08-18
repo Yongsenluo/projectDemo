@@ -23,9 +23,9 @@ import urllib.request
 
 def createAttraction(requests):
     if requests.method == 'POST':
-
+        username = requests.POST.get('username')
         return HttpResponse('create successful')
-    return render(requests, 'createAttraction.html')
+    return render(requests, 'createAttraction.html', {'username':username})
 
 
 @csrf_exempt

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class UserInformation(models.Model):
-    # 关于user的资料
+    # Information about User
     userInformation_id = models.AutoField(verbose_name="userInformation_id", primary_key=True)
     user = models.OneToOneField( verbose_name="user", to=User, on_delete=models.CASCADE)
     count_routes = models.IntegerField(verbose_name="how many routes post", default=0)
