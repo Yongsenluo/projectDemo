@@ -22,6 +22,9 @@
         </div>
         
         <input type="button" value="Search" onclick="codeAddress()">
+        <a class="return" href="{% url 'demo_app:home' %}">
+            Return
+        </a>
         <form method="post">
             <input type="text" name="address" id="address">
             <button type="submit" id="submit">add</button>
