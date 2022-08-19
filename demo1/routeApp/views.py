@@ -1,3 +1,4 @@
+from email.policy import default
 import imp
 import json
 from telnetlib import AO, RCP
@@ -18,7 +19,7 @@ from django.urls import reverse
 # Create your views here.
 
 
-@login_required
+@login_required(login_url='/login/')
 @csrf_exempt
 # @require_POST
 def createRoute(requests):
